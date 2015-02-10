@@ -1,1 +1,1 @@
-# prototype
+# iOS Calculator in Javascript
