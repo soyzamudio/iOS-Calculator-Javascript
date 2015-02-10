@@ -3,7 +3,41 @@ html(lang='en')
   head
     meta(charset='utf-8')
     title Prototype
-    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/style.css')
   body
-    h1 Hello, World
+    .container
+      .row
+        .col-md-4
+        .col-md-4.base.text-center
+          #screen.col-md-12 0
+
+          #clear.col-md-3.gray.button AC
+          #switch.col-md-3.gray.button &plusmn;
+          #exponent.col-md-3.gray.button x
+            span
+              sup(style='font-size: .5em; top: -20px;') y
+          #divide.col-md-3.orange.button &divide;
+
+          #seven.col-md-3.gray.button 7
+          #eight.col-md-3.gray.button 8
+          #nine.col-md-3.gray.button 9
+          #times.col-md-3.orange.button &times;
+
+          #four.col-md-3.gray.button 4
+          #five.col-md-3.gray.button 5
+          #six.col-md-3.gray.button 6
+          #minus.col-md-3.orange.button &minus;
+
+          #one.col-md-3.gray.button 1
+          #two.col-md-3.gray.button 2
+          #three.col-md-3.gray.button 3
+          #plus.col-md-3.orange.button &plus;
+
+          #zero.col-md-3.gray.button 0
+          #dot.col-md-3.gray.button .
+          #equal.col-md-3.dark-gray.button =
+          #root.col-md-3.orange.button &radic;
+        .col-md-4
     script(src='/vendor/jquery/dist/jquery.js')
+    script(src='/main.js')
