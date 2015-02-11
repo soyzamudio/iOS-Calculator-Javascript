@@ -8,33 +8,68 @@ html(lang='en')
   body
     .container
       .row
-        .col-md-4
+        .col-md-4.base
+          .col-md-12
+            table
+                tr
+                  td(style="border-bottom: 1px solid #fff")
+                    strong Code
+                  td(style="border-bottom: 1px solid #fff")
+                    strong Equation
+                tr
+                  td Shift + =
+                  td ADD
+                tr
+                  td -
+                  td SUBSTRACT
+                tr
+                  td Shift + 8
+                  td MULTIPLY
+                tr
+                  td /
+                  td DIVIDE
+                tr
+                  td Shift + `
+                  td CHANGE SIGN
+                tr
+                  td Shift + 6
+                  td EXPONENT
+                tr
+                  td S
+                  td SQUARE ROOT
+                tr
+                  td Enter
+                  td EQUAL
+                tr
+                  td Esc
+                  td CLEAR
+
         .col-md-4.base.text-center
           #screen.col-md-12 0
 
           #clear.col-md-3.gray.button AC
           #switch.col-md-3.gray.button &plusmn;
-          #exponent.col-md-3.gray.button x
+          #exponent.col-md-3.gray.operand x
             span
               sup(style='font-size: .5em; top: -20px;') y
-          #divide.col-md-3.orange.button &divide;
+          #divide.col-md-3.orange.operand &divide;
 
-          #seven.col-md-3.gray.button 7
-          #eight.col-md-3.gray.button 8
-          #nine.col-md-3.gray.button 9
-          #times.col-md-3.orange.button &times;
+          #seven.col-md-3.gray.number 7
+          #eight.col-md-3.gray.number 8
+          #nine.col-md-3.gray.number 9
+          #times.col-md-3.orange.operand &times;
 
-          #four.col-md-3.gray.button 4
-          #five.col-md-3.gray.button 5
-          #six.col-md-3.gray.button 6
-          #minus.col-md-3.orange.button &minus;
+          #four.col-md-3.gray.number 4
+          #five.col-md-3.gray.number 5
+          #six.col-md-3.gray.number 6
+          #minus.col-md-3.orange.operand &minus;
 
-          #one.col-md-3.gray.button 1
-          #two.col-md-3.gray.button 2
-          #three.col-md-3.gray.button 3
-          #plus.col-md-3.orange.button &plus;
+          #one.col-md-3.gray.number 1
+          #two.col-md-3.gray.number 2
+          #three.col-md-3.gray.number 3
+          #plus.col-md-3.orange.operand &plus;
 
-          #zero.col-md-3.gray.button 0
+          #zero.col-md-3.gray.number 0
           #dot.col-md-3.gray.button .
           #equal.col-md-3.dark-gray.button =
           #root.col-md-3.orange.button &radic;

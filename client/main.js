@@ -4,13 +4,13 @@ $(document).ready(function() {
   var screenValue = $('#screen');
   var calculation = [];
 
-  $('#clear').click(function() {
+  function clear() {
     screenValue.text('0');
     screenValue.css('font-size', '5em');
     calculation = [];
-  });
+  }
 
-  $('#switch').click(function() {
+  function changeNegativePositive() {
     if (screenValue.text().length > 0 && screenValue.text() !== '0') {
       if (screenValue.text()[0] === '-') {
         screenValue.text(screenValue.text().slice(1));
@@ -18,92 +18,9 @@ $(document).ready(function() {
         screenValue.prepend('-');
       }
     }
-  });
+  }
 
-  $('#plus').click(function() {
-    if (!calculation[1]) {
-      calculation.push(screenValue.text());
-      calculation.push('+');
-      screenValue.text('0');
-    } else {
-      calculation[1] = '+';
-      screenValue.text('0');
-    }
-  });
-
-  $('#minus').click(function() {
-    if (!calculation[1]) {
-      calculation.push(screenValue.text());
-      calculation.push('-');
-      screenValue.text('0');
-    } else {
-      calculation[1] = '-';
-      screenValue.text('0');
-    }
-  });
-
-  $('#divide').click(function() {
-    if (!calculation[1]) {
-      calculation.push(screenValue.text());
-      calculation.push('/');
-      screenValue.text('0');
-    } else {
-      calculation[1] = '/';
-      screenValue.text('0');
-    }
-  });
-
-  $('#times').click(function() {
-    if (!calculation[1]) {
-      calculation.push(screenValue.text());
-      calculation.push('*');
-      screenValue.text('0');
-    } else {
-      calculation[1] = '*';
-      screenValue.text('0');
-    }
-  });
-
-  $('#exponent').click(function() {
-    if (!calculation[1]) {
-      calculation.push(screenValue.text());
-      calculation.push('exp');
-      screenValue.text('0');
-    } else {
-      calculation[1] = 'exp';
-      screenValue.text('0');
-    }
-  });
-
-  $('#root').click(function() {
-    var result = Math.sqrt(parseFloat(screenValue.text()));
-    if (result % 1 === 0) {
-      result = Math.floor(result);
-    } else {
-      result = result.toFixed(4);
-    }
-    screenValue.text(result);
-  });
-
-  $('#equal').click(function() {
-    var result = 0;
-    if (calculation[1] === '*') {
-      result = parseFloat(calculation[0]) * parseFloat(screenValue.text());
-    } else if (calculation[1] === '+') {
-      result = parseFloat(calculation[0]) + parseFloat(screenValue.text());
-    } else if (calculation[1] === '/') {
-      result = parseFloat(calculation[0]) / parseFloat(screenValue.text());
-    } else if (calculation[1] === '-') {
-      result = parseFloat(calculation[0]) - parseFloat(screenValue.text());
-    } else if (calculation[1] === 'exp') {
-      result = Math.pow(parseFloat(calculation[0]),
-                        parseFloat(screenValue.text()));
-    }
-    screenValue.text(result);
-    calculation = [];
-  });
-
-  $('#dot').click(function() {
+  function addDecimal() {
     if (screenValue.text().indexOf('.') === -1) {
       if (screenValue.text() === '0') {
         screenValue.text(screenValue.text() + '.');
@@ -111,85 +28,136 @@ $(document).ready(function() {
         screenValue.text(screenValue.text() + '.');
       }
     }
-  });
+  }
 
-  $('#zero').click(function() {
+  function checkDecimals(number) {
+    if (number % 1 === 0) {
+      return Math.floor(number);
+    } else {
+      return number.toFixed(4);
+    }
+  }
+
+  function addNumber(number) {
+    console.log('Number: ' + number);
     if (screenValue.text() === '0') {
+      screenValue.text(number);
+    } else {
+      screenValue.text(screenValue.text() + number);
+    }
+  }
+
+  function addOperand(operand) {
+    console.log('Operand: ' + operand);
+    if (!calculation[1]) {
+      console.log('Array: ' + calculation);
+      calculation.push(screenValue.text());
+      console.log('Array2: ' + calculation);
+      calculation.push(operand);
+      console.log('Array3: ' + calculation);
       screenValue.text('0');
     } else {
-      screenValue.text(screenValue.text() + '0');
+      console.log('Array: ' + calculation);
+      calculation[1] = operand;
+      console.log('Array2: ' + calculation);
+      screenValue.text('0');
     }
+  }
+
+  function squareRoot() {
+    var result = Math.sqrt(parseFloat(screenValue.text()));
+    screenValue.text(checkDecimals(result));
+  }
+
+  function giveTotal() {
+    var result = 0;
+    if (calculation[1] === '×') {
+      result = parseFloat(calculation[0]) * parseFloat(screenValue.text());
+    } else if (calculation[1] === '+') {
+      result = parseFloat(calculation[0]) + parseFloat(screenValue.text());
+    } else if (calculation[1] === '÷') {
+      result = parseFloat(calculation[0]) / parseFloat(screenValue.text());
+    } else if (calculation[1] === '−') {
+      result = parseFloat(calculation[0]) - parseFloat(screenValue.text());
+    } else if (calculation[1] === 'xy') {
+      result = Math.pow(parseFloat(calculation[0]),
+                        parseFloat(screenValue.text()));
+    }
+    screenValue.text(checkDecimals(result));
+    console.log('Before: ' + calculation);
+    calculation = [];
+    console.log('After: ' + calculation);
+  }
+
+  $('#dot').click(function() {
+    addDecimal();
   });
 
-  $('#one').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('1');
-    } else {
-      screenValue.text(screenValue.text() + '1');
-    }
+  $('.number').click(function() {
+    addNumber($(this).text());
   });
 
-  $('#two').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('2');
-    } else {
-      screenValue.text(screenValue.text() + '2');
-    }
+  $('.operand').click(function() {
+    addOperand($(this).text());
   });
 
-  $('#three').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('3');
-    } else {
-      screenValue.text(screenValue.text() + '3');
-    }
+  $('#root').click(function() {
+    squareRoot();
   });
 
-  $('#four').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('4');
-    } else {
-      screenValue.text(screenValue.text() + '4');
-    }
+  $('#equal').click(function() {
+    giveTotal();
   });
 
-  $('#five').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('5');
-    } else {
-      screenValue.text(screenValue.text() + '5');
-    }
+  $('#clear').click(function() {
+    clear();
   });
 
-  $('#six').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('6');
-    } else {
-      screenValue.text(screenValue.text() + '6');
-    }
+  $('#switch').click(function() {
+    changeNegativePositive();
   });
 
-  $('#seven').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('7');
-    } else {
-      screenValue.text(screenValue.text() + '7');
+  $(document).keyup(function(e) {
+    if (!e.shiftKey && e.keyCode > 47 && e.keyCode < 58) { // ENTER NUMBERS
+      addNumber(String.fromCharCode(e.keyCode));
     }
-  });
-
-  $('#eight').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('8');
-    } else {
-      screenValue.text(screenValue.text() + '8');
+    if (e.keyCode === 8) { // DELETE LAST NUMBERS
+      if (screenValue.text().length > 1) { // IF SCREEN IS DISPLAYING MORE THAN 1 CHARACTER DELETE THE LAST
+        var txt = screenValue.text();
+        screenValue.text(txt.slice(0, -1));
+      } else {
+        screenValue.text('0'); // ELSE CHANGE TO ZERO
+      }
     }
-  });
-
-  $('#nine').click(function() {
-    if (screenValue.text() === '0') {
-      screenValue.text('9');
-    } else {
-      screenValue.text(screenValue.text() + '9');
+    if (e.keyCode === 13) { // PRESS ENTER
+      giveTotal();
+    }
+    if (e.keyCode === 27) { // PRESS ESC
+      clear();
+    }
+    if (e.keyCode === 190) { // ADD DECIMAL PERIOD
+      addDecimal();
+    }
+    if (e.shiftKey && e.keyCode === 187) { // SUM
+      addOperand('+');
+    }
+    if (e.shiftKey && e.keyCode === 189) { // SUBSTRACT
+      addOperand('−');
+    }
+    if (e.shiftKey && e.keyCode === 56) { // MULTIPLY
+      addOperand('×');
+    }
+    if (e.keyCode === 191) { // DIVIDE
+      addOperand('÷');
+    }
+    if (e.shiftKey && e.keyCode === 54) { // EXPONENTS
+      addOperand('xy');
+    }
+    if (e.keyCode === 83) { // SQUARE ROOT
+      squareRoot();
+    }
+    if (e.shiftKey && e.keyCode === 192) {
+      changeNegativePositive();
     }
   });
 
