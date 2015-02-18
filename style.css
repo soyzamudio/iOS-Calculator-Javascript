@@ -1,0 +1,63 @@
+body {
+  background-color: #f0f0f0;
+  font-family: 'Open Sans', sans-serif;
+}
+.bordered {
+  border: 1px solid #000000;
+}
+table {
+  color: #fff;
+  font-size: 1.3em;
+}
+table td {
+  padding-right: 50px;
+  padding-bottom: 10px;
+}
+#info {
+  cursor: pointer;
+}
+#git {
+  margin-top: 30px;
+}
+.base {
+  font-weight: 200;
+  padding-top: 10%;
+}
+.base #screen {
+  background: #000;
+  text-align: right;
+  color: #fff;
+  padding-top: 40px;
+  font-size: 5em;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.base .button,
+.base .number,
+.base .operand {
+  padding: 15px 15px;
+  font-size: 3em;
+  font-weight: 300;
+  cursor: pointer;
+}
+.base .button::selection,
+.base .number::selection,
+.base .operand::selection {
+  background: transparent;
+}
+.base .gray {
+  color: #fff;
+  background: #2f2f2f;
+  border: 1px solid #000000;
+}
+.base .gray:hover {
+  background: #3f3f3f;
+}
+.base .orange {
+  color: #2f2f2f;
+  background: #ffb90b;
+  border: 1px solid #000000;
+}
+.base .orange:hover {
+  background: #f6ac0e;
+}
