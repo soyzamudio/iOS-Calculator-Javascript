@@ -29,8 +29,8 @@
     "gulp-copy": "0.0.2",
     "gulp-jade": "^0.11.0",
     "gulp-jscs": "^1.4.0",
+    "gulp-less": "^3.0.0",
     "gulp-jshint": "^1.9.2",
-    "gulp-less": "^2.0.1",
     "jshint-stylish": "^1.0.0"
   }
 }

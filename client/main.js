@@ -117,6 +117,10 @@ $(document).ready(function() {
     changeNegativePositive();
   });
 
+  $('#info').click(function() {
+    $('[data-toggle="popover"]').popover();
+  });
+
   $(document).keyup(function(e) {
     if (!e.shiftKey && e.keyCode > 47 && e.keyCode < 58) { // ENTER NUMBERS
       addNumber(String.fromCharCode(e.keyCode));

@@ -4,75 +4,53 @@ html(lang='en')
     meta(charset='utf-8')
     title iOS Calculator in Javascript
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/style.css')
   body
     .container
       .row
         .col-md-4.base
           .col-md-12
-            table
-                tr
-                  td(style="border-bottom: 1px solid #fff")
-                    strong Code
-                  td(style="border-bottom: 1px solid #fff")
-                    strong Equation
-                tr
-                  td Shift + =
-                  td ADD
-                tr
-                  td -
-                  td SUBSTRACT
-                tr
-                  td Shift + 8
-                  td MULTIPLY
-                tr
-                  td /
-                  td DIVIDE
-                tr
-                  td Shift + `
-                  td CHANGE SIGN
-                tr
-                  td Shift + 6
-                  td EXPONENT
-                tr
-                  td S
-                  td SQUARE ROOT
-                tr
-                  td Enter
-                  td EQUAL
-                tr
-                  td Esc
-                  td CLEAR
+            i#info.fa.fa-info-circle.fa-2x(style='float: right', 
+            data-toggle="popover", data-placement="left", title="jQuery &amp; Javascript Calculator", 
+            data-content='To use this calculator you can click or use your keyboard.', data-container="body")
 
         .col-md-4.base.text-center
           #screen.col-md-12 0
 
-          #clear.col-md-3.gray.button AC
+          #clear.col-md-3.gray.button ac
           #switch.col-md-3.gray.button &plusmn;
           #exponent.col-md-3.gray.operand x
             span
               sup(style='font-size: .5em; top: -20px;') y
-          #divide.col-md-3.orange.operand &divide;
+          #divide.col-md-3.gray.operand &divide;
 
           #seven.col-md-3.gray.number 7
           #eight.col-md-3.gray.number 8
           #nine.col-md-3.gray.number 9
-          #times.col-md-3.orange.operand &times;
+          #times.col-md-3.gray.operand &times;
 
           #four.col-md-3.gray.number 4
           #five.col-md-3.gray.number 5
           #six.col-md-3.gray.number 6
-          #minus.col-md-3.orange.operand &minus;
+          #minus.col-md-3.gray.operand &minus;
 
           #one.col-md-3.gray.number 1
           #two.col-md-3.gray.number 2
           #three.col-md-3.gray.number 3
-          #plus.col-md-3.orange.operand &plus;
+          #plus.col-md-3.gray.operand &plus;
 
           #zero.col-md-3.gray.number 0
           #dot.col-md-3.gray.button .
-          #equal.col-md-3.dark-gray.button =
-          #root.col-md-3.orange.button &radic;
+          #root.col-md-3.gray.button &radic;
+          #equal.col-md-3.orange.button =
+          
+          #git.col-md-12 
+            #follow: a.github-button(href='https://github.com/soyzamudio/iOS-Calculator-Javascript', data-style='mega') &nbsp; View on GitHub
+            
         .col-md-4
     script(src='/vendor/jquery/dist/jquery.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+    script#github-bjs(src='https://buttons.github.io/buttons.js', async, defer )
     script(src='/main.js')
